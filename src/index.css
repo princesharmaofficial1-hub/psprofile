@@ -137,3 +137,29 @@
   background-size: 200% 100%;
   animation: shimmer 2.5s linear infinite;
 }
+
+/* Custom cursor */
+body { cursor: none; }
+@media (pointer: coarse) { body { cursor: auto; } }
+.cursor-ring.cursor-hover {
+  width: 3rem;
+  height: 3rem;
+  border-color: hsl(var(--primary));
+  background: hsl(var(--primary) / 0.08);
+}
+
+/* Typing animation */
+@keyframes typing-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: hsl(var(--primary));
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: typing-blink 1s step-end infinite;
+  border-radius: 2px;
+}

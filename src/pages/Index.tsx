@@ -1,13 +1,15 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate, useInView, type Variants } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate, useInView, AnimatePresence, type Variants } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
   Github, Linkedin, Mail, Phone, MapPin, ArrowRight, ArrowUpRight,
   Code2, Server, Brain, Cloud, Database, Wrench, Sparkles, Star,
-  GraduationCap, Award, Globe, Briefcase
+  GraduationCap, Globe, Download, Menu, X, ExternalLink
 } from "lucide-react";
 import prince from "@/assets/prince.jpg";
+import { ContactForm } from "@/components/ContactForm";
+import { CustomCursor } from "@/components/CustomCursor";
 
 const skills = [
   { icon: Server, title: "Backend", items: ["FastAPI", "Node.js", "Express", "Python", "REST APIs"] },
@@ -25,6 +27,8 @@ const projects = [
     tags: ["LangChain", "LangGraph", "Python", "Agents"],
     year: "2025",
     highlight: true,
+    github: "https://github.com/princesharmaofficial1-hub",
+    demo: "",
   },
   {
     title: "RAG Chat Application",
@@ -32,6 +36,8 @@ const projects = [
     tags: ["RAG", "FAISS", "FastAPI", "LangChain"],
     year: "2024",
     highlight: false,
+    github: "https://github.com/princesharmaofficial1-hub",
+    demo: "",
   },
   {
     title: "Serverless Backend System",
@@ -39,6 +45,8 @@ const projects = [
     tags: ["AWS Lambda", "FastAPI", "Docker", "Python"],
     year: "2024",
     highlight: false,
+    github: "https://github.com/princesharmaofficial1-hub",
+    demo: "",
   },
   {
     title: "Portfolio Website",
@@ -46,6 +54,8 @@ const projects = [
     tags: ["React", "TypeScript", "Framer Motion", "Tailwind"],
     year: "2026",
     highlight: false,
+    github: "https://github.com/princesharmaofficial1-hub/psprofile",
+    demo: "https://princesharmaofficial1-hub.github.io/psprofile/",
   },
 ];
 
@@ -119,10 +129,32 @@ const fadeUp: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
+const navLinks = ["About", "Skills", "Experience", "Projects", "Education", "Contact"];
+
 const Index = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
+
+  // Active section on scroll
+  useEffect(() => {
+    const sections = ["home", ...navLinks.map((l) => l.toLowerCase())];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px" }
+    );
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   const mouseX = useMotionValue(50);
   const mouseY = useMotionValue(50);
@@ -139,6 +171,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <CustomCursor />
+
       {/* Scroll progress bar */}
       <motion.div
         style={{ scaleX }}
@@ -156,15 +190,64 @@ const Index = () => {
           <a href="#home" className="font-bold text-base tracking-tight">
             <span className="text-gradient">PS</span><span className="text-primary">.</span>
           </a>
-          <div className="hidden md:flex items-center gap-7 text-sm text-muted-foreground">
-            {["About", "Skills", "Experience", "Projects", "Education", "Contact"].map((l) => (
-              <a key={l} href={`#${l.toLowerCase()}`} className="hover:text-foreground transition-colors">{l}</a>
+          <div className="hidden md:flex items-center gap-7 text-sm">
+            {navLinks.map((l) => (
+              <a
+                key={l}
+                href={`#${l.toLowerCase()}`}
+                className={`transition-colors ${activeSection === l.toLowerCase() ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"}`}
+              >
+                {l}
+              </a>
             ))}
           </div>
-          <Button asChild size="sm" className="bg-gradient-primary text-primary-foreground hover:opacity-90 rounded-full">
-            <a href="mailto:princesharmaofficial1@gmail.com">Hire Me <ArrowUpRight className="ml-1 w-3.5 h-3.5" /></a>
-          </Button>
+          <div className="flex items-center gap-3">
+            <Button asChild size="sm" className="hidden md:flex bg-gradient-primary text-primary-foreground hover:opacity-90 rounded-full">
+              <a href="mailto:princesharmaofficial1@gmail.com">Hire Me <ArrowUpRight className="ml-1 w-3.5 h-3.5" /></a>
+            </Button>
+            {/* Mobile menu button */}
+            <button
+              className="md:hidden w-9 h-9 flex items-center justify-center rounded-full glass text-foreground"
+              onClick={() => setMobileOpen((v) => !v)}
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile dropdown */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25 }}
+              className="md:hidden overflow-hidden px-5 pb-4"
+            >
+              <div className="flex flex-col gap-1 pt-2 border-t border-border">
+                {navLinks.map((l) => (
+                  <a
+                    key={l}
+                    href={`#${l.toLowerCase()}`}
+                    onClick={() => setMobileOpen(false)}
+                    className={`py-2.5 px-3 rounded-xl text-sm transition-colors ${activeSection === l.toLowerCase() ? "text-primary bg-primary/10 font-medium" : "text-muted-foreground hover:text-foreground hover:bg-secondary"}`}
+                  >
+                    {l}
+                  </a>
+                ))}
+                <a
+                  href="mailto:princesharmaofficial1@gmail.com"
+                  className="mt-2 py-2.5 px-3 rounded-xl text-sm text-center bg-gradient-primary text-primary-foreground font-medium"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Hire Me
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.nav>
 
       {/* HERO */}
@@ -210,7 +293,9 @@ const Index = () => {
                 transition={{ delay: 0.9, duration: 0.6 }}
                 className="text-xl md:text-2xl text-muted-foreground mb-4 font-light"
               >
-                Full Stack Developer
+                <TypingText
+                  phrases={["Full Stack Developer", "AI Engineer", "FastAPI Expert", "React Developer", "LangChain Builder"]}
+                />
               </motion.p>
               <motion.p
                 initial={{ opacity: 0, y: 12 }}
@@ -236,6 +321,13 @@ const Index = () => {
                 <MagneticButton>
                   <Button asChild size="lg" variant="outline" className="rounded-full px-7 border-border">
                     <a href="#contact"><Mail className="mr-2 w-4 h-4" /> Get in Touch</a>
+                  </Button>
+                </MagneticButton>
+                <MagneticButton>
+                  <Button asChild size="lg" variant="outline" className="rounded-full px-7 border-border">
+                    <a href="/psprofile/Prince-Sharma-Resume.pdf" download>
+                      <Download className="mr-2 w-4 h-4" /> Resume
+                    </a>
                   </Button>
                 </MagneticButton>
               </motion.div>
@@ -577,6 +669,7 @@ const Index = () => {
               <p className="text-xs text-muted-foreground mt-6 flex items-center justify-center gap-1">
                 <MapPin className="w-3 h-3" /> Pune, Maharashtra, India
               </p>
+              <ContactForm />
             </div>
           </motion.div>
         </div>
@@ -590,7 +683,7 @@ const Index = () => {
               <span className="ml-2 font-normal text-muted-foreground">Prince Sharma</span>
             </div>
             <div className="flex items-center gap-6 text-xs">
-              {["About", "Skills", "Experience", "Projects", "Education", "Contact"].map((l) => (
+              {navLinks.map((l) => (
                 <a key={l} href={`#${l.toLowerCase()}`} className="hover:text-foreground transition-colors">{l}</a>
               ))}
             </div>
@@ -722,7 +815,7 @@ const TimelineItem = ({ role, company, period, points, index }: any) => (
   </motion.div>
 );
 
-const ProjectCard = ({ title, desc, tags, year, highlight }: any) => {
+const ProjectCard = ({ title, desc, tags, year, highlight, github, demo }: any) => {
   const x = useMotionValue(50), y = useMotionValue(50);
   const bg = useMotionTemplate`radial-gradient(400px circle at ${x}% ${y}%, hsl(var(--primary) / 0.15), transparent 70%)`;
   return (
@@ -760,8 +853,51 @@ const ProjectCard = ({ title, desc, tags, year, highlight }: any) => {
             <Badge key={t} variant="outline" className="border-primary/30 text-primary bg-primary/5 font-normal rounded-full">{t}</Badge>
           ))}
         </div>
+        {(github || demo) && (
+          <div className="flex gap-3 mt-5 pt-4 border-t border-border">
+            {github && (
+              <a href={github} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors">
+                <Github className="w-3.5 h-3.5" /> Code
+              </a>
+            )}
+            {demo && (
+              <a href={demo} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors">
+                <ExternalLink className="w-3.5 h-3.5" /> Live Demo
+              </a>
+            )}
+          </div>
+        )}
       </div>
     </motion.div>
+  );
+};
+
+const TypingText = ({ phrases }: { phrases: string[] }) => {
+  const [index, setIndex] = useState(0);
+  const [displayed, setDisplayed] = useState("");
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = phrases[index];
+    let timeout: ReturnType<typeof setTimeout>;
+    if (!deleting && displayed.length < current.length) {
+      timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 80);
+    } else if (!deleting && displayed.length === current.length) {
+      timeout = setTimeout(() => setDeleting(true), 2000);
+    } else if (deleting && displayed.length > 0) {
+      timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length - 1)), 40);
+    } else if (deleting && displayed.length === 0) {
+      setDeleting(false);
+      setIndex((i) => (i + 1) % phrases.length);
+    }
+    return () => clearTimeout(timeout);
+  }, [displayed, deleting, index, phrases]);
+
+  return (
+    <span>
+      {displayed}
+      <span className="typing-cursor" />
+    </span>
   );
 };
 
