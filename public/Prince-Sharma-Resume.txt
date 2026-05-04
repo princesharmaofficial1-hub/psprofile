@@ -1,0 +1,95 @@
+﻿PRINCE SHARMA
+Full Stack Developer | FastAPI | React.js | Node.js | AI Integration
+
+Pune, Maharashtra | +91 9774642917 | princesharmaofficial1@gmail.com
+GitHub: https://github.com/princesharmaofficial1-hub
+LinkedIn: https://www.linkedin.com/in/prince-sharma-3a7774256
+
+═══════════════════════════════════════════════════════════════════
+
+PROFESSIONAL SUMMARY
+
+Full Stack Developer with 5+ years of experience building scalable web 
+applications and backend systems using FastAPI, Node.js, and React.js. 
+Experienced in designing REST APIs, implementing serverless architectures 
+using AWS Lambda, and integrating AI-powered features using LangChain, 
+LangGraph, and RAG-based systems. Proven ability to deliver production-ready 
+applications with clean architecture and end-to-end ownership.
+
+═══════════════════════════════════════════════════════════════════
+
+TECHNICAL SKILLS
+
+Backend: FastAPI, Node.js, Express.js, REST APIs, Python
+Frontend: React.js, Angular, Redux, TypeScript, JavaScript (ES6+), JSX, TSX, Tailwind CSS
+AI/LLM: LangChain, LangGraph, RAG, Agentic AI, Multi-Model Agents, Prompt Engineering
+Cloud & DevOps: AWS Lambda, Docker, GitHub Actions, Firebase
+Databases: MySQL, PostgreSQL, MongoDB, Vector Databases (FAISS / basic)
+Tools: Git, Power BI, MS Excel
+Systems: Linux, Windows Server, DHCP, DNS
+
+═══════════════════════════════════════════════════════════════════
+
+PROFESSIONAL EXPERIENCE
+
+Aligned Automation Pvt. Ltd. | Solution Engineer
+July 2021 – Present
+
+• Designed and developed scalable backend APIs using FastAPI and Node.js
+• Built event-driven backend workflows using AWS Lambda
+• Developed frontend applications using React.js and Angular
+• Integrated AI systems using LangChain, RAG, and agent-based workflows
+• Containerized applications using Docker
+• Led full development lifecycle from requirements to deployment
+
+Freelance Full Stack Developer
+January 2020 – Present
+
+• Delivered full stack applications using MERN and FastAPI
+• Built responsive dashboards, blogs, and web platforms
+• Implemented AI-based features using LangChain and agentic systems
+• Managed end-to-end lifecycle including deployment and maintenance
+
+Altruist Technology Pvt. Ltd. | Customer Care Representative
+February 2021 – June 2021
+
+• Delivered customer support and resolved technical queries efficiently
+
+═══════════════════════════════════════════════════════════════════
+
+KEY PROJECTS
+
+AI Agent System
+Built multi-model agent system using LangChain and agentic workflows
+
+RAG Chat Application
+Implemented document-based retrieval and intelligent response system
+
+Serverless Backend System
+Developed backend services using FastAPI and AWS Lambda
+
+Portfolio Website
+Built using React.js, TypeScript, and Tailwind CSS
+
+═══════════════════════════════════════════════════════════════════
+
+EDUCATION
+
+Diploma in Electronics & Communication Engineering (76%)
+Board of Technical Education | 2019
+
+═══════════════════════════════════════════════════════════════════
+
+CERTIFICATIONS
+
+• MERN Stack (Ongoing)
+• Web Designing
+• C Programming
+• Hardware & Networking
+
+═══════════════════════════════════════════════════════════════════
+
+ADDITIONAL INFORMATION
+
+Languages: English, Hindi, Nagamese, Assamese, Tamil
+Location: Pune, Maharashtra

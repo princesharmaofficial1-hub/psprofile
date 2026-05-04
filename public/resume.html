@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prince Sharma - Resume</title>
+  <style>
+    @page { 
+      margin: 0.75in; 
+      size: letter;
+    }
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    body {
+      font-family: 'Calibri', 'Arial', sans-serif;
+      line-height: 1.5;
+      color: #000;
+      background: white;
+      font-size: 11pt;
+    }
+    .container {
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 0.5in;
+    }
+    
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #2c5aa0;
+      padding-bottom: 15px;
+    }
+    .header-photo {
+      flex-shrink: 0;
+    }
+    .header-photo img {
+      width: 120px;
+      height: 120px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 3px solid #2c5aa0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .header-content {
+      flex: 1;
+      text-align: left;
+    }
+    .name {
+      font-size: 28pt;
+      font-weight: bold;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+    .title {
+      font-size: 12pt;
+      color: #2c5aa0;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .contact-info {
+      font-size: 10pt;
+      color: #333;
+      line-height: 1.6;
+    }
+    .contact-info a {
+      color: #2c5aa0;
+      text-decoration: none;
+    }
+    
+    /* Section Headers */
+    .section {
+      margin-bottom: 18px;
+    }
+    .section-title {
+      font-size: 13pt;
+      font-weight: bold;
+      color: #2c5aa0;
+      text-transform: uppercase;
+      border-bottom: 2px solid #2c5aa0;
+      padding-bottom: 3px;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Summary */
+    .summary {
+      text-align: justify;
+      line-height: 1.6;
+      margin-bottom: 5px;
+    }
+    
+    /* Skills */
+    .skills-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 5px;
+    }
+    .skills-table td {
+      padding: 4px 8px;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .skills-table td:first-child {
+      font-weight: 600;
+      width: 130px;
+      color: #1a1a1a;
+    }
+    
+    /* Experience */
+    .job {
+      margin-bottom: 14px;
+    }
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 3px;
+    }
+    .job-title {
+      font-size: 11.5pt;
+      font-weight: bold;
+      color: #1a1a1a;
+    }
+    .job-period {
+      font-size: 10pt;
+      color: #555;
+      font-style: italic;
+      white-space: nowrap;
+    }
+    .company {
+      font-size: 10.5pt;
+      color: #2c5aa0;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .job ul {
+      margin-left: 20px;
+      margin-top: 4px;
+    }
+    .job li {
+      margin-bottom: 3px;
+      line-height: 1.5;
+    }
+    
+    /* Projects */
+    .project {
+      margin-bottom: 10px;
+    }
+    .project-title {
+      font-weight: bold;
+      color: #1a1a1a;
+      font-size: 11pt;
+    }
+    .project-desc {
+      margin-top: 2px;
+      line-height: 1.5;
+    }
+    
+    /* Education */
+    .education-item {
+      margin-bottom: 8px;
+    }
+    .degree {
+      font-weight: bold;
+      color: #1a1a1a;
+      font-size: 11pt;
+    }
+    .institution {
+      color: #555;
+      font-size: 10pt;
+      margin-top: 2px;
+    }
+    
+    /* Certifications */
+    .cert-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+      margin-bottom: 5px;
+    }
+    .cert-item {
+      line-height: 1.5;
+    }
+    
+    /* Additional Info */
+    .info-line {
+      margin-bottom: 4px;
+      line-height: 1.5;
+    }
+    .info-label {
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    
+    /* Print Button */
+    .print-btn-container {
+      text-align: center;
+      padding: 20px;
+      background: #f5f5f5;
+      margin: -0.5in -0.5in 30px -0.5in;
+      border-radius: 8px;
+      border: 2px dashed #2c5aa0;
+    }
+    .print-btn {
+      padding: 12px 32px;
+      background: #2c5aa0;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14pt;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(44, 90, 160, 0.3);
+      transition: all 0.2s;
+    }
+    .print-btn:hover {
+      background: #1e3f70;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(44, 90, 160, 0.4);
+    }
+    .print-instruction {
+      font-size: 11pt;
+      color: #555;
+      margin-bottom: 12px;
+    }
+    
+    @media print {
+      body { 
+        padding: 0;
+        margin: 0;
+      }
+      .container {
+        padding: 0;
+      }
+      .no-print { 
+        display: none !important; 
+      }
+      .section {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="no-print print-btn-container">
+    <div class="print-instruction">
+      <strong>Ready to save?</strong> Click the button below or press <strong>Ctrl+P</strong> (Windows) / <strong>Cmd+P</strong> (Mac)
+    </div>
+    <button onclick="window.print()" class="print-btn">📄 Save as PDF</button>
+  </div>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-photo">
+        <img src="../src/assets/prince.jpg" alt="Prince Sharma">
+      </div>
+      <div class="header-content">
+        <div class="name">PRINCE SHARMA</div>
+        <div class="title">Full Stack Developer | FastAPI | React.js | Node.js | AI Integration</div>
+        <div class="contact-info">
+          Pune, Maharashtra | +91 9774642917 | princesharmaofficial1@gmail.com<br>
+          <a href="https://github.com/princesharmaofficial1-hub">github.com/princesharmaofficial1-hub</a> | 
+          <a href="https://www.linkedin.com/in/prince-sharma-3a7774256">linkedin.com/in/prince-sharma-3a7774256</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Professional Summary -->
+    <div class="section">
+      <div class="section-title">Professional Summary</div>
+      <div class="summary">
+        Full Stack Developer with 5+ years of experience building scalable web applications and backend systems using FastAPI, Node.js, and React.js. Experienced in designing REST APIs, implementing serverless architectures using AWS Lambda, and integrating AI-powered features using LangChain, LangGraph, and RAG-based systems. Proven ability to deliver production-ready applications with clean architecture and end-to-end ownership.
+      </div>
+    </div>
+
+    <!-- Technical Skills -->
+    <div class="section">
+      <div class="section-title">Technical Skills</div>
+      <table class="skills-table">
+        <tr>
+          <td>Backend:</td>
+          <td>FastAPI, Node.js, Express.js, REST APIs, Python</td>
+        </tr>
+        <tr>
+          <td>Frontend:</td>
+          <td>React.js, Angular, Redux, TypeScript, JavaScript (ES6+), JSX, TSX, Tailwind CSS</td>
+        </tr>
+        <tr>
+          <td>AI/LLM:</td>
+          <td>LangChain, LangGraph, RAG, Agentic AI, Multi-Model Agents, Prompt Engineering</td>
+        </tr>
+        <tr>
+          <td>Cloud & DevOps:</td>
+          <td>AWS Lambda, Docker, GitHub Actions, Firebase</td>
+        </tr>
+        <tr>
+          <td>Databases:</td>
+          <td>MySQL, PostgreSQL, MongoDB, Vector Databases (FAISS)</td>
+        </tr>
+        <tr>
+          <td>Tools:</td>
+          <td>Git, Power BI, MS Excel</td>
+        </tr>
+        <tr>
+          <td>Systems:</td>
+          <td>Linux, Windows Server, DHCP, DNS</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Professional Experience -->
+    <div class="section">
+      <div class="section-title">Professional Experience</div>
+      
+      <div class="job">
+        <div class="job-header">
+          <div class="job-title">Solution Engineer</div>
+          <div class="job-period">July 2021 – Present</div>
+        </div>
+        <div class="company">Aligned Automation Pvt. Ltd.</div>
+        <ul>
+          <li>Designed and developed scalable backend APIs using FastAPI and Node.js serving production traffic</li>
+          <li>Built event-driven backend workflows using AWS Lambda with auto-scaling and high availability</li>
+          <li>Developed frontend applications using React.js and Angular with TypeScript</li>
+          <li>Integrated AI systems using LangChain, RAG pipelines, and multi-model agent-based workflows</li>
+          <li>Containerized applications using Docker and managed CI/CD with GitHub Actions</li>
+          <li>Led full development lifecycle from requirements gathering to production deployment</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <div class="job-title">Freelance Full Stack Developer</div>
+          <div class="job-period">January 2020 – Present</div>
+        </div>
+        <div class="company">Self-employed</div>
+        <ul>
+          <li>Delivered full stack applications using MERN stack and FastAPI for clients across industries</li>
+          <li>Built responsive dashboards, blogs, and web platforms with modern UI/UX</li>
+          <li>Implemented AI-based features using LangChain and agentic systems for automation</li>
+          <li>Managed end-to-end project lifecycle including deployment and ongoing maintenance</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <div class="job-title">Customer Care Representative</div>
+          <div class="job-period">February 2021 – June 2021</div>
+        </div>
+        <div class="company">Altruist Technology Pvt. Ltd.</div>
+        <ul>
+          <li>Delivered customer support and resolved technical queries efficiently</li>
+          <li>Maintained high customer satisfaction scores through clear communication</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Key Projects -->
+    <div class="section">
+      <div class="section-title">Key Projects</div>
+      
+      <div class="project">
+        <div class="project-title">AI Agent System</div>
+        <div class="project-desc">Built multi-model agent system using LangChain and LangGraph for autonomous task execution with tool-calling, memory, and multi-step reasoning across complex workflows</div>
+      </div>
+
+      <div class="project">
+        <div class="project-title">RAG Chat Application</div>
+        <div class="project-desc">Implemented document-based retrieval system with intelligent contextual responses powered by vector embeddings (FAISS). Supports PDF ingestion, semantic search, and streaming responses</div>
+      </div>
+
+      <div class="project">
+        <div class="project-title">Serverless Backend System</div>
+        <div class="project-desc">Developed event-driven backend services using FastAPI and AWS Lambda with high availability, auto-scaling, and zero cold-start optimization</div>
+      </div>
+
+      <div class="project">
+        <div class="project-title">Portfolio Website</div>
+        <div class="project-desc">Built modern portfolio using React.js, TypeScript, Tailwind CSS, and Framer Motion featuring smooth animations, parallax effects, and fully responsive design</div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="section">
+      <div class="section-title">Education</div>
+      <div class="education-item">
+        <div class="degree">Diploma in Electronics & Communication Engineering (76%)</div>
+        <div class="institution">Board of Technical Education | 2019</div>
+      </div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="section">
+      <div class="section-title">Certifications</div>
+      <div class="cert-list">
+        <div class="cert-item">• MERN Stack Development (Ongoing)</div>
+        <div class="cert-item">• C Programming</div>
+        <div class="cert-item">• Web Designing</div>
+        <div class="cert-item">• Hardware & Networking</div>
+      </div>
+    </div>
+
+    <!-- Additional Information -->
+    <div class="section">
+      <div class="section-title">Additional Information</div>
+      <div class="info-line">
+        <span class="info-label">Languages:</span> English, Hindi, Nagamese, Assamese, Tamil
+      </div>
+      <div class="info-line">
+        <span class="info-label">Location:</span> Pune, Maharashtra, India
+      </div>
+    </div>
+  </div>
+</body>
+</html>
